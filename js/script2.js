@@ -115,3 +115,46 @@ let jumlahHuruf2 = mahasiswa.map((nama) => ({
   jmlHuruf: nama.length,
 }));
 console.table(jumlahHuruf2);
+
+// THIS KEYWORD
+// constructor can't use arrow function
+const Mahasiswa = function () {
+  this.nama = "Lavina";
+  this.umur = 19;
+  // method can use arrow function
+  this.sayHello = () => {
+    console.log(`Halo, nama saya ${this.nama}, dan saya ${this.umur} tahun.`);
+  };
+
+  // arrow function with function declaration ☑️
+  // setInterval(() => {
+  //   console.log(this.umur++);
+  // });
+};
+
+const lavina = new Mahasiswa();
+
+// with object literal
+const mhs1 = {
+  nama: "Lavina",
+  umur: 19,
+  sayHello: function () {
+    console.log(`Halo, nama saya ${this.nama}, dan saya ${this.umur} tahun.`);
+  },
+};
+
+// case: caption box
+const box = document.querySelector(".box");
+box.addEventListener("click", function () {
+  let satu = "size";
+  let dua = "caption";
+
+  if (this.classList.contains(satu)) {
+    [satu, dua] = [dua, satu]; // reverse
+  }
+
+  this.classList.toggle(satu);
+  setTimeout(() => {
+    this.classList.toggle(dua);
+  }, 600);
+});
