@@ -38,3 +38,42 @@ const hasil = angka
   .map((a) => a * 3)
   .reduce((acc, cur) => acc + cur);
 console.log(hasil);
+
+// take the element's video
+const videos1 = document.querySelectorAll("[data-duration]"); // -> nodelist
+const videos = Array.from(document.querySelectorAll("[data-duration]")); // -> array
+console.log(videos);
+
+// select "JAVASCRIPT LANJUTAN" only
+let jsLanjut = videos
+  .filter((video) => video.textContent.includes("JAVASCRIPT LANJUTAN"))
+
+  // take the duration from each videos
+  .map((item) => item.dataset.duration)
+
+  // change the duration into float, change from minutes to second
+  .map((waktu) => {
+    const parts = waktu.split(":").map((part) => parseFloat(part));
+    return parts[0] * 60 + parts[1];
+  })
+
+  // add every seconds duration
+  .reduce((total, detik) => total + detik);
+
+// change the form into hour:minute:second
+const jam = Math.floor(jsLanjut / 3600);
+jsLanjut = jsLanjut - jam * 3600;
+const menit = Math.floor(jsLanjut / 60);
+const detik = jsLanjut - menit * 60;
+
+// save it to DOM
+const pDurasi = document.querySelector(".total-durasi");
+pDurasi.textContent = `${jam} Jam, ${menit} Menit, ${detik} Detik`;
+
+const jmlVideo = videos.filter((video) =>
+  video.textContent.includes("JAVASCRIPT LANJUTAN")
+).length;
+const pJmlVideo = document.querySelector(".jumlah-video");
+pJmlVideo.textContent = `${jmlVideo} Video`;
+
+console.log(pDurasi);
