@@ -101,3 +101,40 @@ const el3 = `<div>
 </div>`;
 
 document.body.innerHTML = el3;
+
+// Tagged Templates
+const nama = "Lavina";
+const umur = 19;
+
+function coba(strings, ...values) {
+  let result = "";
+  strings.forEach((str, i) => {
+    result += `${str}${values[i] || ""}`;
+  });
+  // return result;
+
+  // w reduce
+  return strings.reduce(
+    (result, str, i) => `${result}${str}${values[i] || ""}`,
+    ""
+  );
+}
+
+const str = coba`Halo nama saya ${nama}, saya ${umur} tahun.`;
+console.log(str);
+
+// hightlight
+const nama1 = "Lavina";
+const umur1 = 19;
+const email = "lavina@gmail.com";
+
+function hightlight(strings, ...values) {
+  return strings.reduce(
+    (result, str, i) =>
+      `${result}${str}<span class="hl">${values[i] || ""}</span>`,
+    ""
+  );
+}
+
+const str1 = hightlight`Halo nama saya ${nama1}, saya ${umur} tahun, dan email saya adalah ${email}`;
+document.body.innerHTML = str1;
