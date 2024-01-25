@@ -138,3 +138,95 @@ function hightlight(strings, ...values) {
 
 const str1 = hightlight`Halo nama saya ${nama1}, saya ${umur} tahun, dan email saya adalah ${email}`;
 document.body.innerHTML = str1;
+
+// Destructuring Variable / Assignment
+// destructuring array
+
+const perkenalan = ["Halo", "nama", "saya", "Lavina"];
+const [salam, satu, dua, nama2] = perkenalan;
+const [salam1, , , nama3] = perkenalan; // skipping items
+
+console.log(nama2);
+
+// swap items
+let a = 1;
+let b = 2;
+console.log(a);
+console.log(b);
+
+[a, b] = [b, a];
+console.log(a);
+console.log(b);
+
+// return value from function
+function coba() {
+  return [1, 2];
+}
+
+const [one, two] = coba();
+console.log(two);
+
+// rest parameter -> suitable if u don't know how many elements are in the arr
+const [hana, ...num] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(hana);
+console.log(num);
+
+// destructuring object
+const mhs3 = {
+  namaku: "Lavina",
+  umurku: 19,
+};
+
+const { nama4, umur2 } = mhs3;
+console.log(nama4); // -> undifined, because the name of properties is different with the variable in the object
+
+// right way ⬇️
+// const { namaku, umurku } = mhs3;
+// console.log(namaku);
+
+// assign properties to new variable
+const { namaku: n, umurku: u } = mhs3;
+console.log(n);
+
+// assign the object w/o declare it
+({ namaku1, umurku1 } = { namaku1: "Lavina", umurku1: 19 });
+console.log(umurku1);
+
+// gives default value
+const warga = {
+  name: "Aden",
+  age: 17,
+  // telp: "0987654321"
+};
+
+const { name, age, telp = "1234567890" } = warga;
+console.log(telp);
+
+// w new variable
+const { name: nm, age: ag, telp: tp = "1234567890" } = warga;
+console.log(tp);
+
+// w rest param
+const { name: name1, ...anotherValues } = warga;
+console.log(name1);
+console.log(anotherValues);
+
+// take fields from object after it sent as function parameters
+const pejabad = {
+  id: 123,
+  jeneng: "Maria",
+  omor: 39,
+  telpon: 6789054321,
+};
+
+// w/o destructuring
+function getIdPejabad(pejabad) {
+  return pejabad.id;
+}
+console.log(getIdPejabad(pejabad));
+
+// w destructuring
+function getValuesPejabad({ id }) {
+  return id;
+}
+console.log(getValuesPejabad(pejabad));
