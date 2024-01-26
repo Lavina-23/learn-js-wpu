@@ -230,3 +230,71 @@ function getValuesPejabad({ id }) {
   return id;
 }
 console.log(getValuesPejabad(pejabad));
+
+// Destructuring Function
+function penjumlahanPerkalian(a, b) {
+  return [a + b, a * b];
+}
+
+function kalkulasi(a, b) {
+  return [a + b, a - b, a * b, a / b];
+}
+
+// w/o destructuring
+const jumlah = penjumlahanPerkalian(2, 3)[0];
+console.log(jumlah);
+const kali = penjumlahanPerkalian(2, 3)[1];
+console.log(kali);
+
+// w destructuring
+const [jumlah1, kali1] = penjumlahanPerkalian(2, 3);
+console.log(jumlah1);
+console.log(kali1);
+
+// the order of properties must be consistent
+const [add, substract, multiply, divide = 0] = kalkulasi(2, 3); // can be given a default value
+console.log(substract);
+console.log(divide);
+
+// if want to assign properties randomly :
+function kalkulasi1(a, b) {
+  return {
+    tambah: a + b,
+    kurang: a - b,
+    perkalian: a * b,
+    bagi: a / b,
+  };
+}
+
+const { bagi, tambah, kurang, perkalian } = kalkulasi1(2, 3);
+console.log(perkalian);
+
+// Destructuring function arguments
+const produk = {
+  nmProd: "Beras",
+  harga: 20000,
+  stok: 15,
+  ukuran: {
+    sedang: "2Kg",
+    besar: "5Kg",
+  },
+};
+
+// w/o destructuring
+// use param
+function cetakProduk(nmProd, harga) {
+  return `Kami punya produk ${nmProd}, harganya ${harga} ribu rupiah.`;
+}
+console.log(cetakProduk(produk.nmProd, produk.harga));
+
+// use object
+function cetakProduk1(produk) {
+  return `Kami punya produk ${produk.nmProd}, harganya ${produk.harga} ribu rupiah.`;
+}
+console.log(cetakProduk1(produk));
+
+// w destructuring
+function cetakProduk2({ nmProd, harga, ukuran: { sedang, besar } }) {
+  return `Kami punya produk ${nmProd}, harganya ${harga} ribu rupiah. Ada 2 macam berat beras yaitu, ${sedang} dan ${besar}`;
+}
+console.log(cetakProduk2(produk));
