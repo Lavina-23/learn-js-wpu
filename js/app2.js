@@ -16,6 +16,9 @@ const createUser = (user) => {
     // intinya dengan promise bisa diatur jika berhasil maka resolve jika gagal maka reject
     // dengan promise bisa mengatur error handling
 
+    // resolve mengubah status dari pending ke fulfilled lalu valuenya akan dikirim ke handler .then()
+    // reject mengubah status dari pending ke rejected lalu value dari error (biasanya error message) akan dikirim ke handler .catch()
+
     setTimeout(() => {
       users.push(user);
 
